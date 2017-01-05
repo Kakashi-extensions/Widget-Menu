@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.modern-calc" path="/org/gnome/shell/extensions/modern-calc/">
+    <!-- appearance -->
+    <key type="s" name="theme">
+        <default>'default-theme'</default>
+    </key>
+    
+    <key type="b" name="enable-indicator">
+        <default>true</default>
+    </key>
+
+    <key type="b" name="enable-transparency">
+        <default>false</default>
+    </key>
+
+    <key type="i" name="opacity-value">
+        <default>100</default>
+    </key>
+    
+    <key type="i" name="window-width-value">
+        <default>26</default>
+    </key>
+    
+    <key type="b" name="enable-reveal-animation">
+        <default>true</default>
+    </key>
+
+    <key type="b" name="enable-background-transparency">
+        <default>true</default>
+    </key>
+
+    <key type="i" name="background-opacity-value">
+        <default>95</default>
+    </key>
+
+    <!-- modules -->
+    <key type="s" name="default-module">
+        <default>'calculator'</default>
+    </key>
+
+    <key type="b" name="calculator-enabled">
+        <default>true</default>
+    </key>
+
+    <key type="b" name="unit-converter-enabled">
+        <default>true</default>
+    </key>
+
+    <!-- shortcuts -->
+    <key type="b" name="enable-shortcuts">
+        <default>false</default>
+    </key>
+
+    <key type="as" name="show-app-shortcut">
+        <default><![CDATA[['<Super>C']]]></default>
+    </key>
+
+    <key type="as" name="calc-clear-shortcut">
+        <default><![CDATA[['<Ctrl><Del>']]]></default>
+    </key>
+    <key type="as" name="calc-copy-result-shortcut">
+        <default><![CDATA[['<Ctrl><Shift>C']]]></default>
+    </key>
+
+    <key type="s" name="decimal-mark">
+        <default>''</default>
+    </key>
+
+  </schema>
+</schemalist>

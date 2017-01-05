@@ -1,0 +1,90 @@
+version 7
+ - More measurements for unit converter: Acceleration, Area, Energy, Force, Mass, Power, Pressure, Time and Volume
+
+
+
+version 6
+ - Fix: when the decimal mark is unset, the calc now uses a dot in order to show a message asking to set a decimal mark
+
+
+
+version 5
+ - Features
+	General
+     -theme support (change the theme, disable and enable the extension)
+     -message system was added (navigation keys are <O>, <Y>, <N> or <ENTERS>)
+
+	dynamic settings 
+	 - reveal animation
+	 - show/hide indicator
+	 - general opacity
+	 - background opacity
+
+	 shortcuts:
+	 - navigation between modules CTRL+PgDown / CTRL+PgUp
+
+	Calculator:
+	 shortcuts:
+	 - CTRL+Space (CTRL+Delete didn't worked) has the same action of Clear button
+	 - CTRL+Shift+C Copy result
+	 - CTRL+Shift+H Clear History
+	 - CTRL+H Use history's current expression
+	 - CTRL+G History move left
+	 - CTRL+J History move right (Ctrl+K didn't worked)
+
+	Unit converter
+	 shortcuts:
+	 - CTRL+Space to clear entries (measurement filter, expression)
+	 - CTRL+M Show measurement chooser
+	 - CTRL+Shift+C Copy main result
+
+	 Measurements:
+	 - length
+	 - Speed
+	 - Temperature
+
+ - Bug fixes
+	General
+	 - fixes to work with v3.14
+	
+	Calculator:
+	 - option to change decimal mark (settings)
+	 - Issue #1: Buttons moving when the 'pi' replacement is done, solved by Raalraan
+
+
+
+version 4
+ - indicator and calc icons were added
+ - preferences option in toolbar
+ - status bar was added
+ - calc buttons look n' fell weres improved
+ - and some bug fixes
+
+
+
+version 3 
+ - option to change background opacity
+ - possibility to use expressions of previous calculus (history navigation)
+ - EXP function was added
+ - keybinds for modules
+ - and some bug fixes
+
+
+
+version 2
+ - the extension now is module base
+ - user settings was created
+ - option to configure window's width
+ - option to configure window's opacity
+ - option to disable window's reveal animation
+ - option to enable/disable modules
+ - shortcuts definition
+ - option to hide the extension icon
+ - shortcut to show/hide the extension
+ - when the extension is opened the expression field receives focus
+ - the calculator core was improved
+
+
+
+version 1
+ - extension with a basic calculator
