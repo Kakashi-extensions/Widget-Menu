@@ -44,6 +44,9 @@ const Me = ExtensionUtils.getCurrentExtension();
 const BasicCalcButtonGrid = Me.imports.basic_calc_button_grid;
 const DateWidget = Me.imports.Date_Widget;
 const CalendarWidget = Me.imports.Calendar_Widget;
+//const WeatherWidget = Me.imports.weather_widget;
+//const PlayerWidget = Me.imports.player_widget;
+//const VolumeWidget  = Me.imports.volume_widget;
 const CalculusHistory = Me.imports.calculus_history;
 const Display = Me.imports.display;
 const ModernCalcModule = Me.imports.modern_calc_module;
@@ -94,7 +97,11 @@ const CalculatorModule = new Lang.Class({
         this._history = null;
         this._display = null;
         this._basicCalcButtonGrid = null;
+        this._WeatherWidget = null;
         this._DateWidget = null;
+        //this._PlayerWidget = null;
+
+      //  this._VolumeWidget = null;
         this._CalendarWidget = null;
 
         this.parent(parentParams);
@@ -115,22 +122,75 @@ const CalculatorModule = new Lang.Class({
 
         this.actor.add(this._DateWidget.today, {
           expand: false,
-          x_align: St.Align.MIDDLE,
-          y_align: St.Align.MIDDLE
+          x_align: St.Align.MIDDLE
 
+        });
+
+        this._chuck = new St.Widget({
+          //vertical:true,
+        });
+
+        this._dave = new St.Label({text: "The weather is currently (place weather icon here) and the \n temperature is (place temp here)"});
+
+        this._chuck.add_actor(this._dave);
+        this.actor.add(this._chuck, {expand: true, x_fill: false, x_align: St.Align.MIDDLE});
+
+      /*  this._WeatherWidget = new WeatherWidget.WeatherWidget({
+
+          calc_app: this
+        });
+
+        this.actor.add(this._WeatherWidget.weather, {
+
+          expand: false,
+          x_align: St.Align.MIDDLE
+        }); */
+
+    /*    this._VolumeWidget = new VolumeWidget.VolumeWidget({
+        calc_app: this
+      });
+
+      this.actor.add(this._VolumeWidget.volume, {
+
+        expand: true,
+        x_align: St.Align.MIDDLE,
+        y_align: St.Align.MIDDLE
+      }); */
+
+      //  this._PlayerWidget = new PlayerWidget.PlayerWidget({
+      //    calc_app: this
+    //    })
+
+    //    this.actor.add(this.PlayerWidget._player, {
+    //      expand: false,
+    //      x_align: St.Align.MIDDLE,
+    //      y_align: St.Align.MIDDLE
+    //    });
+
+        this._jack = new St.BoxLayout({
+
+            style_class: 'jack-box',
+            vertical: true
+        })
+
+        this._sarrahStyle = new St.BoxLayout({
+
+          style_class: 'sarrahStyle-box',
+          vertical: true
+        });
+
+
+        this._sarrah = new St.BoxLayout({
+
+          style_class: 'sarrah-box',
+          vertical: true
         });
 
         this._CalendarWidget = new CalendarWidget.CalendarWidget({
           calc_app: this
         });
 
-        this.actor.add(this._CalendarWidget.cal, {
-          expand: false,
-          x_align: St.Align.MIDDLE,
-          y_align: St.Align.MIDDLE
-
-        });
-
+        this._sarrah.add(this._CalendarWidget.cal);
 
         // add history
         this._history = new CalculusHistory.CalculusHistory({
@@ -142,11 +202,56 @@ const CalculatorModule = new Lang.Class({
             y_align: St.Align.MIDDLE
         });
 
+        this._weatherbox = new St.BoxLayout({
+
+          style_class: 'weather-box',
+          vertical: true
+        });
+
+        this._mediacontrols = new St.BoxLayout({
+
+          style_class: 'media-box',
+          vertical: true
+        });
+
+
+
+
+        this._bobweather = new St.Label({style_class: 'bob-weather', text: "Weather Forecast Here"});
+
+        this._bobmedia = new St.Label({style_class: 'bob-media',text: "Meadia Controls Here"});
+
+        this._weatherbox.add(this._bobweather, {expand: true, x_fill: false, x_align: St.Align.MIDDLE});
+        this._mediacontrols.add(this._bobmedia, {expand: true, x_fill: false, x_align: St.Align.MIDDLE});
+
+        this._joe = new St.Widget({
+          style_class: 'bob-widget'
+          });
+
+          this._spacer1 = new St.Label({ style_class: 'spacer1', text: '' });
+          this._spacer2 = new St.Label({ style_class: 'spacer2', text: '' });
+          this._spacer3 = new St.Label({ style_class: 'spacer3', text: '' });
+          this._spacer4 = new St.Label({ style_class: 'spacer4', text: '' });
+          this._spacer5 = new St.Label({ style_class: 'spacer5', text: '' });
+
+
+          this._anneStylebox = new St.BoxLayout({
+
+            style_class: 'anne-stylebox',
+            vertical: true
+          });
+
+          this._anne = new St.BoxLayout({
+
+            style_class: 'bob-box',
+            vertical: true
+          });
+
         // add display
         this._display = new Display.Display({
             calc_app: this
         });
-        this.actor.add(this._display.actor, {
+        this._anne.add(this._display.actor, {
             expand: false,
             y_align: St.Align.START,
             x_align: St.Align.START
@@ -157,11 +262,27 @@ const CalculatorModule = new Lang.Class({
             calc_app: this
         });
 
-        this.actor.add(this._basicCalcButtonGrid.actor, {
+        this._anne.add(this._basicCalcButtonGrid.actor, {
             expand: false,
-            x_align: St.Align.MIDDLE,
-            y_align: St.Align.MIDDLE
+
         });
+
+        this._sarrahStyle.add(this._sarrah)
+
+        this._anneStylebox.add(this._anne);
+
+        this._jack.add(this._sarrahStyle);
+        this._jack.add(this._spacer1);
+        this._jack.add(this._anneStylebox);
+        this._jack.add(this._spacer2);
+        this._jack.add(this._weatherbox);
+        this._jack.add(this._spacer3);
+        this._jack.add(this._mediacontrols);
+
+        this._joe.add_actor(this._jack);
+
+
+        this.actor.add(this._joe, {expand: true, x_fill: false, x_align: St.Align.MIDDLE});
 
     },
 
@@ -185,32 +306,7 @@ const CalculatorModule = new Lang.Class({
 
         if(this.params.app && this.params.app.preferences.get_boolean(PrefsKeys.ENABLE_SHORTCUTS_KEY)){
 
-            // clear
-            /*Main.wm.addKeybinding(
-                PrefsKeys.CALC_CLEAR_SHORTCUT_KEY,
-                Utils.SETTINGS,
-                Meta.KeyBindingFlags.NONE,
-                Shell.KeyBindingMode.NORMAL |
-                Shell.KeyBindingMode.MESSAGE_TRAY |
-                Shell.KeyBindingMode.OVERVIEW,
-                Lang.bind(this, function() {
-                   this._display.clear_entry();
-                })
-            );
 
-            // copy displayed result
-            Main.wm.addKeybinding(
-                PrefsKeys.CALC_COPY_RESULT_SHORTCUT_KEY,
-                Utils.SETTINGS,
-                Meta.KeyBindingFlags.NONE,
-                Shell.KeyBindingMode.NORMAL |
-                Shell.KeyBindingMode.MESSAGE_TRAY |
-                Shell.KeyBindingMode.OVERVIEW,
-                Lang.bind(this, function() {
-                    let result_value = this._display.get_result();
-                    Clipboard.set_text(CLIPBOARD_TYPE, result_value);
-                })
-            );*/
 
             this.keybindings_enabled = true;
         }
@@ -279,6 +375,9 @@ const CalculatorModule = new Lang.Class({
         this._DateWidget.destroy();
         this._history.destroy();
         this._CalendarWidget.destroy();
+      //  this._WeatherWidget.destroy();
+      //  this._VolumeWidget.destroy();
+      //  this._PlayerWidget.destroy();
         this._display.destroy();
         this._basicCalcButtonGrid.destroy();
         this.parent();
