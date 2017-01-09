@@ -1,5 +1,5 @@
 /*
- *    Copyright (C) 2014  Kaer 
+ *    Copyright (C) 2014  Kaer
  *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *    with this program; if not, write to the Free Software Foundation, Inc.,
  *    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- *    
+ *
  *    Modern Calc, Kaer (C) 2014-2015 Kaer
  *    Modern Calc comes with ABSOLUTELY NO WARRANTY.
  *
@@ -45,7 +45,7 @@ const _ = Gettext.gettext;
 
 const Display = new Lang.Class({
     Name: "Display",
-    
+
     _init: function(params) {
 
         this.params = Params.parse(params, {
@@ -53,6 +53,7 @@ const Display = new Lang.Class({
         });
 
         this.actor = new St.BoxLayout({
+          
             style_class: 'display-group',
             vertical: true
         });
@@ -72,8 +73,8 @@ const Display = new Lang.Class({
             track_hover: true,
             can_focus: true
         });
-        
-        
+
+
         this._expression_entry.clutter_text.connect('key-press-event', Lang.bind(this, this._entryKeyPress));
         this._expression_entry.clutter_text.connect('text-changed', Lang.bind(this, this._expressionChanged));
 
@@ -104,9 +105,9 @@ const Display = new Lang.Class({
     insert_data: function(value){
         if(value == undefined) return;
 
-        
+
         if(this._expression_entry){
-            
+
             // EXP (fill with n zeros) if it is a number
             // otherwise EXP function will be ignored
             if(this.params.calc_app.has_exp_flag){
@@ -127,12 +128,12 @@ const Display = new Lang.Class({
                 }
             }
 
-            
+
             let entryValue = this._expression_entry.text;
 
-            // if isnt a number nor brackets and the last symbol is equal current, didn't insert 
+            // if isnt a number nor brackets and the last symbol is equal current, didn't insert
             // to avoid a future syntax error
-            if ( value.length == 1   && /^[0-9()]+$/.test(value) == false && 
+            if ( value.length == 1   && /^[0-9()]+$/.test(value) == false &&
                 entryValue.substring(entryValue.length-1, entryValue.length) == value ){
                 return;
 
@@ -145,7 +146,7 @@ const Display = new Lang.Class({
 
     _insert_value: function(value, memorize_last_char){
         let cursor_pos = this._expression_entry.clutter_text.get_cursor_position();
-            
+
         this.focus_entry();
         this._expression_entry.clutter_text.insert_text(value, cursor_pos);
 
@@ -213,7 +214,7 @@ const Display = new Lang.Class({
                     this.focus_entry();
                     */
                 }
-                
+
             }
         }
     },
@@ -241,5 +242,5 @@ const Display = new Lang.Class({
         else
             return this._lastInsertedChar;
     }
-    
+
 });

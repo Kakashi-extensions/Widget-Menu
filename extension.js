@@ -1,5 +1,5 @@
 /*
- *    Copyright (C) 2014  Kaer 
+ *    Copyright (C) 2014  Kaer
  *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *    with this program; if not, write to the Free Software Foundation, Inc.,
  *    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- *    
+ *
  *    Modern Calc, Kaer (C) 2014-2015 Kaer
  *    Modern Calc comes with ABSOLUTELY NO WARRANTY.
  *
@@ -52,7 +52,7 @@ const IndicatorButton = new Lang.Class({
 
     _init: function() {
         this.parent(0.0, "ModernCalcIndicator");
-        
+
         this._preferences = Utils.getSettings();
 
         this._modernCalc = new ModernCalc.ModernCalc();
@@ -66,7 +66,7 @@ const IndicatorButton = new Lang.Class({
         this._showingIndicator = false;
         this._indicatorAdded = false;
         this._showHideIndicator();
-        
+
         this._keybindingsEnabled = false;
 
         this._enableKeybindings();
@@ -89,11 +89,11 @@ const IndicatorButton = new Lang.Class({
                 break;
         }
     },
-    
+
     // GSHELL 3.14
     _onEvent: function(actor, event) {
         if (event.type() == Clutter.EventType.BUTTON_PRESS){
-            
+
             switch(event.get_button()) {
                 case Clutter.BUTTON_SECONDARY:
                     this.menu.toggle();
@@ -114,7 +114,7 @@ const IndicatorButton = new Lang.Class({
             this._modernCalc.hide();
             Util.spawn(["gnome-shell-extension-prefs", Me.uuid]);
         }));
-        this.menu.addMenuItem(preferences_item);        
+        this.menu.addMenuItem(preferences_item);
     },
 
     _enableKeybindings: function() {
@@ -146,12 +146,12 @@ const IndicatorButton = new Lang.Class({
     _showHideIndicator: function(){
 
         if(Utils.getSettings().get_boolean(PrefsKeys.ENABLE_INDICATOR_KEY)){
-            
+
             // show the indicator
             if(!this._indicatorAdded){
                 Main.panel.addToStatusArea('ModernCalcIndicator', this);
                 this._indicatorAdded = true;
-                
+
             } else {
                 this.actor.show();
             }
@@ -196,7 +196,7 @@ const IndicatorButton = new Lang.Class({
 
         if (this._signals !== null) {
             this._signals.forEach(function(signal) {
-                if (signal) 
+                if (signal)
                     pref.disconnect(signal);
             });
         }
@@ -208,7 +208,7 @@ const IndicatorButton = new Lang.Class({
 
 // OVERRIDES --------------------------------------------------------------------------------------
 let appButton = null;
-function init(extension) { 
+function init(extension) {
 	Convenience.initTranslations("modern-calc");
 }
 

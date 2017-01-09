@@ -75,7 +75,7 @@ const _ = Gettext.gettext;
     //       now.getDate() == date.getDate();
 //}
 
-const TodayButton = new Lang.Class({
+/*const TodayButton = new Lang.Class({
     Name: 'TodayButton',
 
     _init: function(calendar) {
@@ -117,17 +117,17 @@ const TodayButton = new Lang.Class({
         /* Translators: This is the date format to use when the calendar popup is
          * shown - it is shown just below the time in the shell (e.g. "Tue 9:29 AM").
          */
-        let dateFormat = Shell.util_translate_time_string (N_("%B %e %Y"));
-        this._dateLabel.set_text(date.toLocaleFormat(dateFormat));
+    //    let dateFormat = Shell.util_translate_time_string (N_("%B %e %Y"));
+  //      this._dateLabel.set_text(date.toLocaleFormat(dateFormat));
 
         /* Translators: This is the accessible name of the date button shown
          * below the time in the shell; it should combine the weekday and the
          * date, e.g. "Tuesday February 17 2015".
          */
-        let dateFormat = Shell.util_translate_time_string (N_("%A %B %e %Y"));
-        this.actor.accessible_name = date.toLocaleFormat(dateFormat);
-    }
-});
+    //    let dateFormat = Shell.util_translate_time_string (N_("%A %B %e %Y"));
+    //    this.actor.accessible_name = date.toLocaleFormat(dateFormat);
+  //  }
+//});
 
 
 
@@ -141,7 +141,7 @@ const CalendarWidget = new Lang.Class({
         });
 
         this.cal = new St.BoxLayout({
-            style_class: 'Calendar-group',
+            style_class: 'bob-calendar',
             vertical: true
         });
 
@@ -152,43 +152,33 @@ const CalendarWidget = new Lang.Class({
         _Calendar: function(){
 
             this._box = new St.BoxLayout({
-                style_class: 'measurement-chooser-page',
+              style_class: 'box-calendar',
                 vertical: true,
                 visible: true
             });
 
 
 
-           let layout = new imports.ui.dateMenu.FreezableBinLayout();
+           //let layout = new imports.ui.dateMenu.FreezableBinLayout();
 
-           this._bin = new St.Widget({
-             layout_manager: layout
+           this._bin = new St.BoxLayout({
+             style_class: 'bin-box',
+             vertical: true,
+             //layout_manager: layout
             });
 
-           this._box.add_child(this._bin);
+           this._box.add(this._bin);
 
-           this._hbox = new St.BoxLayout({ name: 'calendarArea' });
+           this._hbox = new St.BoxLayout({ style_class: 'hbox' });
 
-           this._bin.add_actor(this._hbox);
+           this._bin.add(this._hbox);
 
            this._calendar = new imports.ui.calendar.Calendar();
-           this._calendar.connect('selected-date-changed',
-                               Lang.bind(this, function(calendar, date) {
-                                   layout.frozen = !_isToday(date);
-                                   this._messageList.setDate(date);
-                               }));
-
-           // Whenever the menu is opened, select today
-           //if (isOpen) {
-               let now = new Date();
-               this._calendar.setDate(now);
-              // this._date.setDate(now);
-              // this._messageList.setDate(now);
 
 
 
            this._vbox = new St.BoxLayout({
-             style_class: 'datemenu-calendar-column',
+             style_class: 'jill-calendar',
              vertical: true,
 
 
@@ -196,15 +186,18 @@ const CalendarWidget = new Lang.Class({
 
 
 
+           this._hbox.add(this._vbox,{
+             expand: true,
+             vertical: true,
 
-           //this._date = new TodayButton(this._calendar);
-
-           //this._vbox.add_actor(this._date.actor);
-
-           this._hbox.add(this._vbox);
+           });
 
 
-           this._vbox.add(this._calendar.actor);
+           this._vbox.add(this._calendar.actor,{
+             expand: true,
+             vertical: true,
+
+           });
 
 
 
@@ -215,8 +208,8 @@ const CalendarWidget = new Lang.Class({
 
            this.cal.add(this._box,{
              expand: true,
-             x_align: St.Align.MIDDLE,
-             y_align: St.Align.START
+             vertical: true,
+
            });
 
 

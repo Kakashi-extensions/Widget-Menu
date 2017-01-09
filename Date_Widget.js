@@ -80,6 +80,8 @@ const DateWidget = new Lang.Class({
 
         this.today = new St.BoxLayout({
             style_class: 'Calendar-group',
+
+            //x_align: St.Align.MIDDLE
             vertical: true
         });
 
@@ -91,32 +93,35 @@ const DateWidget = new Lang.Class({
         _Date: function(){
 
             this._date = new St.BoxLayout({
-                style_class: 'measurement-chooser-page',
+                style_class: 'date-widget',
+
+                x_align: St.Align.MIDDLE,
                 vertical: true,
                 visible: true
             });
 
             this._dayLabel = new St.Label({
 
-              style_class: 'bob-day-label',
-                x_align: St.Align.MIDDLE
+              style_class: 'day-label',
+
+
             });
 
             this._date.add(this._dayLabel, {
-                expand: false,
+                expand: true,
                 x_align: St.Align.MIDDLE,
-                y_align: St.Align.MIDDLE
+
             });
 
             this._dateLabel = new St.Label({
-              style_class: 'bob-date-label'
+              style_class: 'date-label'
             });
 
 
             this._date.add(this._dateLabel, {
-                expand: false,
+                expand: true,
                 x_align: St.Align.MIDDLE,
-                y_align: St.Align.MIDDLE
+
             });
 
             date = new Date();
@@ -126,7 +131,7 @@ const DateWidget = new Lang.Class({
             let dateFormat = Shell.util_translate_time_string (N_("%B %e %Y"));
             this._dateLabel.set_text(date.toLocaleFormat(dateFormat));
 
-            this.today.add(this._date);
+            this.today.add(this._date, {expand: true, x_fill: false, x_align: St.Align.MIDDLE});
 
 },
 

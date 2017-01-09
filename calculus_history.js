@@ -1,5 +1,5 @@
 /*
- *    Copyright (C) 2014  Kaer 
+ *    Copyright (C) 2014  Kaer
  *
  *    This program is free software; you can redistribute it and/or modify
  *    it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *    with this program; if not, write to the Free Software Foundation, Inc.,
  *    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- *    
+ *
  *    Modern Calc, Kaer (C) 2014-2015 Kaer
  *    Modern Calc comes with ABSOLUTELY NO WARRANTY.
  *
@@ -43,7 +43,7 @@ const _ = Gettext.gettext;
 
 const CalculusHistory = new Lang.Class({
     Name: "CalculusHistory",
-    
+
     _init: function(params) {
         this.params = Params.parse(params, {
             calc_app: false,
@@ -63,29 +63,17 @@ const CalculusHistory = new Lang.Class({
 
     _prepareInterface: function(){
 
-        this._historyTitle = new St.Label({
-            style_class: 'history-title',
-            text: _("History"),
-            visible: true
-        });
 
-        this.actor.add_child(this._historyTitle, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
 
         // buttons
         this._btnHistClear = new St.Button({ //TODO how to not hide the button text when it have an icon
-            child: new St.Icon({icon_name: 'user-trash-symbolic', style_class: 'button-icon'}),
+          child: new St.Icon({icon_name: 'user-trash-symbolic', style_class: 'button-icon'}),
             label: _("clear history"), style_class: 'history-btn-clear'
         });
 
         this._btnHistClear.connect("clicked", Lang.bind(this, this.clear_calculus_history));
-        /*
-        this._btnClose = new St.Button({
-            label: 'Close', style_class: 'history-btn-close'
-        });*/
+
+
 
         // history buttons
         this._btnHistMovPrev = new St.Button({
@@ -101,34 +89,11 @@ const CalculusHistory = new Lang.Class({
         this._btnHistMovNext.connect("clicked", Lang.bind(this, this.history_move_next));
 
 
-        this._exprTitle = new St.Label({
-            style_class: 'expr-label',
-            text: _("Expr."),
-            visible: true
-        });
-
-        this._exprValue = new St.Label({
-            style_class: 'expr-value',
-            text: '',
-            visible: true
-        });
-
         this._btnUseExpr = new St.Button({
             label: _("Use"), style_class: 'history-use-expr'
         });
         this._btnUseExpr.connect("clicked", Lang.bind(this, this.use_current_expression));
 
-        this._ansTitle = new St.Label({
-            style_class: 'ans-label',
-            text: _("ANS"),
-            visible: true
-        });
-
-        this._ansValue = new St.Label({
-            style_class: 'ans-value',
-            text: '',
-            visible: true
-        });
 
         // containers
         this._hideableContainer = new St.BoxLayout({
@@ -136,94 +101,9 @@ const CalculusHistory = new Lang.Class({
             vertical: true
         });
 
-        this._buttonContainer = new St.BoxLayout({
-            style_class: 'button-container',
-            vertical: false
-        });
 
-        this._exprContainer = new St.BoxLayout({
-            style_class: 'expr-container',
-            vertical: false
-        });
 
-        this._ansContainer = new St.BoxLayout({
-            style_class: 'ans-container',
-            vertical: false
-        });
-
-        this._buttonContainer.add(this._btnHistClear, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-        /*
-        this._buttonContainer.add(this._btnClose, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });*/
-
-        this._buttonContainer.add(this._btnHistMovPrev, { 
-            expand: false,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        this._buttonContainer.add(this._btnHistMovNext, { 
-            expand: false,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        this._exprContainer.add(this._exprTitle, { 
-            expand: false,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-        this._exprContainer.add(this._exprValue, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        this._exprContainer.add(this._btnUseExpr, { 
-            expand: false,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        this._ansContainer.add(this._ansTitle, { 
-            expand: false,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-        this._ansContainer.add(this._ansValue, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        
-
-        this._hideableContainer.add(this._buttonContainer, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        this._hideableContainer.add(this._exprContainer, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-
-        this._hideableContainer.add(this._ansContainer, { 
-            expand: true,
-            y_align: St.Align.START,
-            x_align: St.Align.START
-        });
-        
-        this.actor.add_child(this._hideableContainer, { 
+        this.actor.add_child(this._hideableContainer, {
             expand: true,
             y_align: St.Align.START,
             x_align: St.Align.START
@@ -246,7 +126,7 @@ const CalculusHistory = new Lang.Class({
             button.add_style_pseudo_class('disabled');
         }
     },
-   
+
     _refreshUI: function(){
 
         let histItem = {
@@ -260,8 +140,7 @@ const CalculusHistory = new Lang.Class({
                 histItem = item;
             }
         }
-        this._exprValue.text = histItem.expression;
-        this._ansValue.text = histItem.result;
+
 
 
         // switch buttons -------------------------------------------------------
@@ -304,7 +183,7 @@ const CalculusHistory = new Lang.Class({
 
             if(this._historyPos > 0){
                 this._historyPos--;
-            }            
+            }
 
         } else {
             this._historyPos = undefined;
@@ -346,7 +225,7 @@ const CalculusHistory = new Lang.Class({
             if(this._calculus_history.length == 0){
                 this._historyPos = undefined;
             }else {
-                this._historyPos = this._calculus_history.length-1;    
+                this._historyPos = this._calculus_history.length-1;
             }
         }
 
@@ -359,12 +238,12 @@ const CalculusHistory = new Lang.Class({
             this._calculus_history = new Array();
         }
 
-        if(calc_object != undefined && 
-            calc_object.hasOwnProperty('expression') && 
+        if(calc_object != undefined &&
+            calc_object.hasOwnProperty('expression') &&
             calc_object.hasOwnProperty('result')
             ){
 
-            // pushes to history an obj like: 
+            // pushes to history an obj like:
             // {'expression': '10+44', 'result': '54', 'ans': 15 }
             this._calculus_history.push({
                 expression: calc_object.expression,
