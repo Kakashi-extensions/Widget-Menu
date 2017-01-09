@@ -33,6 +33,51 @@
     border-left: 1px solid #000000;
 }
 
+.mc-default-theme .sarrahStyle-box {
+  border-radius: 10px;
+  background: rgba(111,138,145, 0.2);
+  color: #cbcbcb;
+  padding: 20px;
+}
+
+.mc-default-theme .weather-box {
+  border-radius: 10px;
+  background: rgba(111,138,145, 0.2);
+  color: #cbcbcb;
+  padding: 20px;
+  font-size: 22pt;
+}
+
+.mc-default-theme .media-box {
+  border-radius: 10px;
+  background: rgba(111,138,145, 0.2);
+  color: #cbcbcb;
+  padding: 20px;
+  font-size: 22pt;
+
+}
+
+
+.mc-default-theme .spacer1 {
+  padding: 7px;
+}
+
+.mc-default-theme .spacer2 {
+  padding: 7px;
+}
+
+.mc-default-theme .spacer3 {
+  padding: 7px;
+}
+
+.mc-default-theme .spacer4 {
+  padding: 7px;
+}
+
+.mc-default-theme .spacer5 {
+  padding: 7px;
+}
+
 /* MESSAGE ----------------------------------------------------------------- */
 .mc-default-theme .message-view .mbox {
     padding: 5px;
@@ -104,6 +149,16 @@
 
 /* CALC MODULE */
 .mc-default-theme .calc-module {
+}
+
+
+.mc-default-theme .calc-module .bob-box{
+
+  border-radius: 10px;
+  background: rgba(111,138,145, 0.2);
+  color: #cbcbcb;
+  padding: 25px;
+
 }
 /* UNIT CONVERTOR */
 .mc-default-theme .unit-convertor-module {
@@ -248,17 +303,17 @@
 .mc-default-theme .display-group .calc-entry {
     color: rgba(255, 255, 255, 0.8);
     caret-color: rgba(255, 255, 255, 0.8);
-    font-size: 14pt;
+    font-size: 20pt;
     caret-size: 1px;
     padding: 3px 3px 12px 3px;
-    font-family: monospace;
+
     font-weight: 300;
     color: #73878c;
 }
 
 
 .mc-default-theme .display-group .display-result {
-    font-size: 20px;
+    font-size: 27px;
     /*text-align: right;*/ /*TODO why doenst works*/
     padding: 6px 3px;
 
@@ -386,9 +441,31 @@
     color: #ffffff;
 }
 
-.mc-default-theme .measurement-chooser-page {
+.mc-default-theme .date-widget {
+
 
 }
+
+.mc-default-theme .date-widget .day-label {
+
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 2px;
+    font-size: 58px
+
+}
+
+.mc-default-theme .date-widget .date-label {
+
+    text-align: left;
+    padding-bottom: 20px;
+    font-size: 22px
+}
+
+
+.mc-default-theme .measurement-chooser-page {
+
+  }
 
 .mc-default-theme .measurement-chooser-page .measurement-chooser-title {
     padding-bottom: 5px;
